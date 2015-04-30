@@ -5,7 +5,7 @@ import HomeCtrl from './home.controller';
 
 export default angular
     .module('ezquiz-home', [coreModule.name])
-    .config(function ($stateProvider) {
+    .config($stateProvider => {
         $stateProvider.state('main.home', {
             url: '/',
             views: {
