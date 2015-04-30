@@ -1,6 +1,6 @@
 'use strict';
 
-import {homeModule} from './home/home';
+import homeModule from './home/home';
 
 angular.module('ezquiz', [
     homeModule.name

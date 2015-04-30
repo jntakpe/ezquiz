@@ -1,9 +1,9 @@
 'use strict';
 
-import {coreModule} from '../components/core/core';
+import coreModule from '../components/core/core';
 import HomeCtrl from './home.controller';
 
-export var homeModule = angular
+export default angular
     .module('ezquiz-home', [coreModule.name])
     .config(function ($stateProvider) {
         $stateProvider.state('main.home', {
