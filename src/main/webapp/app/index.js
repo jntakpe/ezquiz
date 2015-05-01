@@ -1,13 +1,13 @@
 'use strict';
 
-import sidenavModule from './components/sidenav/sidenav';
+import layoutModule from './components/layout/layout';
 import homeModule from './home/home';
 import errorModule from './errors/error';
 
 angular.module('ezquiz', [
-    sidenavModule.name,
-    homeModule.name,
-    errorModule.name
-]).config(($stateProvider, $urlRouterProvider) => {
-    $urlRouterProvider.otherwise('/404');
+  layoutModule.name,
+  homeModule.name,
+  errorModule.name
+]).config($urlRouterProvider => {
+  $urlRouterProvider.otherwise('/404');
 });

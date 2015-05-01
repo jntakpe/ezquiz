@@ -26,7 +26,10 @@
   your browser</a> to improve your experience.</p>
 <![endif]-->
 <section ui-view="sidenav" layout="column"></section>
-<div ui-view="content"></div>
+<div layout="column" tabindex="-1" role="main" flex>
+  <section ui-view="header"></section>
+  <section ui-view="content"></section>
+</div>
 
 <!-- build:js(src/main/webapp) scripts/vendor.js -->
 <!-- bower:js -->
