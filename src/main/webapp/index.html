@@ -20,12 +20,14 @@
     <!-- endinject -->
     <!-- endbuild -->
 </head>
-<body>
+<body layout="row">
 <!--[if lt IE 10]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
+<section layout="row" ui-view="sidenav" flex>
 
+</section>
 <div ui-view="content"></div>
 
 <!-- build:js(src/main/webapp) scripts/vendor.js -->
