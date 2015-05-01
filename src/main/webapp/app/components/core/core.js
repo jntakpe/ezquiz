@@ -1,5 +1,5 @@
 'use strict';
 
 export default angular.module('ezquiz-core',
-    ['ngAnimate', 'ngCookies', 'ngTouch', 'ngResource', 'ngMaterial', 'ui.router']);
+  ['ngAnimate', 'ngCookies', 'ngTouch', 'ngResource', 'ngMaterial', 'ui.router', 'ngMdIcons']);
 
