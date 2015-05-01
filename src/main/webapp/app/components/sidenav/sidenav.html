@@ -1,2 +1,12 @@
-<h1>Im a sidenav</h1>
-<p>{{sidenav.text}}</p>
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')"
+            tabindex="-1" flex>
+  <md-toolbar class="md-theme-indigo">
+    <h1 class="md-toolbar-tools">EzQuiz</h1>
+  </md-toolbar>
+  <md-content layout-padding role="navigation">
+    <p>
+      This sidenav is locked open on your device. To go back to the default behavior,
+      narrow your display.
+    </p>
+  </md-content>
+</md-sidenav>
