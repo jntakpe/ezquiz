@@ -1,0 +1,34 @@
+app:
+  name: ${project.name}
+  description: ${project.description}
+  version: ${project.version}
+  contact: http://www.github.com/jntakpe/ezquiz
+  license: MIT
+  licenseUrl: http://opensource.org/licenses/MIT
+management:
+  context-path: /manage
+  security:
+    enabled: false
+spring:
+  jpa:
+    openInView: false
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: true
+      hibernate.format_sql: true
+      hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+liquibase:
+  change-log: classpath:/liquibase/master.xml
+---
+spring:
+  profiles: dev
+datasource:
+  url: jdbc:postgresql://localhost:5432/ezquiz
+  username: postgres
+  password: sopra*
+  dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
