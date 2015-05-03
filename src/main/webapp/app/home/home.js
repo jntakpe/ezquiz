@@ -9,7 +9,7 @@ export default angular
         $stateProvider.state('main.home', {
             url: '/',
             views: {
-                'content@': {
+              'content': {
                     templateUrl: 'app/home/home.html',
                     controller: HomeCtrl,
                     controllerAs: 'home'
