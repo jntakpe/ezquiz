@@ -5,23 +5,23 @@ var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')();
 
-module.exports = function(options) {
+module.exports = function (options) {
   function webpack(watch, callback) {
     var webpackOptions = {
       watch: watch,
       module: {
-        preLoaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'jshint-loader'}],
-        loaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}]
+        preLoaders: [{test: /\.js$/, exclude: /node_modules/, loader: 'jshint-loader'}],
+        loaders: [{test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}]
       },
-      output: { filename: 'index.js' }
+      output: {filename: 'index.js'}
     };
 
-    if(watch) {
+    if (watch) {
       webpackOptions.devtool = 'inline-source-map';
     }
 
-    var webpackChangeHandler = function(err, stats) {
-      if(err) {
+    var webpackChangeHandler = function (err, stats) {
+      if (err) {
         options.errorHandler('Webpack')(err);
       }
       $.util.log(stats.toString({
@@ -31,7 +31,7 @@ module.exports = function(options) {
         version: false
       }));
       browserSync.reload();
-      if(watch) {
+      if (watch) {
         watch = false;
         callback();
       }

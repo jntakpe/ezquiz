@@ -7,21 +7,21 @@ var $ = require('gulp-load-plugins')();
 
 var wiredep = require('wiredep').stream;
 
-module.exports = function(options) {
+module.exports = function (options) {
   gulp.task('styles', function () {
     var sassOptions = {
       style: 'expanded'
     };
 
     var injectFiles = gulp.src([
-        options.src + '/assets/**/*.scss',
-        '!' + options.src + '/assets/styles/index.scss',
-        '!' + options.src + '/assets/styles/vendor.scss'
-    ], { read: false });
+      options.src + '/assets/**/*.scss',
+      '!' + options.src + '/assets/styles/index.scss',
+      '!' + options.src + '/assets/styles/vendor.scss'
+    ], {read: false});
 
     var injectOptions = {
-      transform: function(filePath) {
-          filePath = filePath.replace(options.src + '/assets/', '');
+      transform: function (filePath) {
+        filePath = filePath.replace(options.src + '/assets/', '../');
         return '@import \'' + filePath + '\';';
       },
       starttag: '// injector',
@@ -33,8 +33,8 @@ module.exports = function(options) {
     var vendorFilter = $.filter('vendor.scss');
 
     return gulp.src([
-        options.src + '/assets/styles/index.scss',
-        options.src + '/assets/styles/vendor.scss'
+      options.src + '/assets/styles/index.scss',
+      options.src + '/assets/styles/vendor.scss'
     ])
       .pipe(indexFilter)
       .pipe($.inject(injectFiles, injectOptions))
@@ -47,6 +47,6 @@ module.exports = function(options) {
       .pipe($.autoprefixer()).on('error', options.errorHandler('Autoprefixer'))
       .pipe($.sourcemaps.write())
       .pipe(gulp.dest(options.tmp + '/serve/app/'))
-      .pipe(browserSync.reload({ stream: true }));
+      .pipe(browserSync.reload({stream: true}));
   });
 };
