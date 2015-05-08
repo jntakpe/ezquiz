@@ -1,6 +1,9 @@
 <md-toolbar class="md-whiteframe-glow-z2">
-  <div class="md-toolbar-tools" layout="row">
-    <div class="fill-height" flex>
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button svg-child" aria-label="Toggle Menu" ng-click="header.openMenu()" hide-gt-sm>
+      <ng-md-icon icon="menu" class="fill-current" size="30"></ng-md-icon>
+    </md-button>
+    <div layout="row" class="fill-height" flex>
       <h3>{{header.text}}</h3>
     </div>
     <div>

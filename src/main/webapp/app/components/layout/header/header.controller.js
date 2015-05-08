@@ -1,7 +1,14 @@
 'use strict';
 
 export default class HeaderCtrl {
-  constructor() {
-    this.text = 'Some header text';
+
+  constructor($timeout, $mdSidenav) {
+    this.text = 'header text';
+    this.$timeout = $timeout;
+    this.$mdSidenav = $mdSidenav;
+  }
+
+  openMenu() {
+    this.$timeout(() => this.$mdSidenav('menu-left').open());
   }
 }
