@@ -17,7 +17,7 @@
 ######################
 # Bower
 ######################
-bower_components/
+/bower_components/
 
 ######################
 # Eclipse
