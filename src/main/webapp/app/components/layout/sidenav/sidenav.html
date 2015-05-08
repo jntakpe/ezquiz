@@ -1,8 +1,27 @@
 <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="aside" md-is-locked-open="$mdMedia('gt-md')"
             tabindex="-1" flex>
-    <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">EzQuiz</h1>
-    </md-toolbar>
-    <md-content layout-padding role="navigation" class="nav-content">
-    </md-content>
+  <md-toolbar class="md-theme-indigo">
+    <h1 class="md-toolbar-tools">EzQuiz</h1>
+  </md-toolbar>
+  <md-content layout-padding role="navigation" class="nav-content" flex>
+    <ul class="docs-menu">
+      <li ng-repeat="section in sidenav.menuContent" class="parent-list-item"
+          ng-class="{'parentActive' : sidenav.isSectionSelected(section)}">
+        <h2 class="menu-heading md-subhead" ng-if="section.type === 'heading'" id="heading_{{ section.name }}">
+          {{section.name}}
+        </h2>
+        <menu-link section="section" ng-if="section.type === 'link'"></menu-link>
+
+        <menu-toggle section="section" ng-if="section.type === 'toggle'"></menu-toggle>
+
+        <ul ng-if="section.children" class="menu-nested-list">
+          <li ng-repeat="child in section.children" ng-class="{'childActive' : sidenav.isSectionSelected(child)}">
+            <menu-link section="child" ng-if="child.type === 'link'"></menu-link>
+
+            <menu-toggle section="child" ng-if="child.type === 'toggle'"></menu-toggle>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </md-content>
 </md-sidenav>
