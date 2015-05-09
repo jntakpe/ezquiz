@@ -1,7 +1,16 @@
-.fill-current {
-  fill: currentColor;
+@mixin icon-size($size) {
+  height: $size;
+  width: $size;
 }
 
-.md-icon-button.svg-child {
-  padding-top: 8px;
+.s24 {
+  @include icon-size(24px)
+}
+
+.s36 {
+  @include icon-size(36px)
+}
+
+.s48 {
+  @include icon-size(48px)
 }
