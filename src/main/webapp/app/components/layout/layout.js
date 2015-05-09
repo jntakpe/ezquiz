@@ -8,7 +8,7 @@ import {menuLink, menuToggle} from './sidenav/sidenav.directive';
 
 export default angular
   .module('ezquiz-layout', ['ezquiz-core'])
-  .config(($stateProvider, $mdThemingProvider) => {
+  .config($stateProvider => {
     $stateProvider.state('layout', {
       templateUrl: 'app/components/layout/layout.html'
     }).state('main', {
@@ -27,7 +27,6 @@ export default angular
         }
       }
     });
-    $mdThemingProvider.theme('default').primaryPalette('red');
   })
   .filter('humanizeDoc', humanizeDoc)
   .service('sidenavService', SidenavService)
