@@ -1,6 +1,6 @@
 'use strict';
 
-import NotFoundCtrl from './error.controller.js';
+import NotFoundCtrl from './notfound.controller.js';
 
 export default angular
     .module('ezquiz-error', ['ezquiz-core'])
