@@ -24,6 +24,11 @@ spring:
       hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
 liquibase:
   change-log: classpath:/liquibase/master.xml
+authentication:
+    oauth:
+        clientId: ezquiz
+        secret: ezquizsupersecret
+        tokenValidityInSeconds: 1800
 ---
 spring:
   profiles: dev

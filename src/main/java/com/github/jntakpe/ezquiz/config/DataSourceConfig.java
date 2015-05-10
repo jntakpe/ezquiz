@@ -28,7 +28,7 @@ public class DataSourceConfig {
 
   public static final String URL = "url";
 
-  private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfig.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceConfig.class);
 
   @Autowired
   private DatasourceProperties datasourceProperties;
@@ -38,7 +38,7 @@ public class DataSourceConfig {
 
   @Bean(destroyMethod = "shutdown")
   public DataSource dataSource() {
-    LOG.debug("Configuring datasource");
+    LOGGER.debug("Configuring datasource");
     HikariConfig config = new HikariConfig();
     config.addDataSourceProperty(URL, datasourceProperties.getUrl());
     config.setDataSourceClassName(datasourceProperties.getDataSourceClassName());

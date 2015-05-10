@@ -1,11 +1,11 @@
 package com.github.jntakpe.ezquiz.config;
 
 /**
- * Constantes de l'application
+ * Constantes de configuration de l'application
  *
  * @author jntakpe
  */
-public class Constants {
+public class ConfigConstants {
 
   public static final String DEV_PROFILE = "dev";
 
