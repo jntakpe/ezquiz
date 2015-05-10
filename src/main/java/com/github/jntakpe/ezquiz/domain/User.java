@@ -1,7 +1,5 @@
 package com.github.jntakpe.ezquiz.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -31,12 +29,6 @@ public class User extends AbstractEntity {
   @Column(length = 50, unique = true, nullable = false)
   private String login;
 
-  @JsonIgnore
-  @NotNull
-  @Size(min = 5, max = 100)
-  @Column(length = 100)
-  private String password;
-
   @Size(max = 50)
   @Column(name = "first_name", length = 50)
   private String firstName;
@@ -53,6 +45,10 @@ public class User extends AbstractEntity {
   @Column(length = 15)
   private String phone;
 
+  @Column(name = "user_type", length = 50)
+  @Enumerated(EnumType.STRING)
+  private UserType userType;
+
   @ManyToMany
   @JoinTable(name = "user_authority", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
     inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
@@ -60,7 +56,7 @@ public class User extends AbstractEntity {
   private Set<Authority> authorities = new HashSet<>();
 
   @Transient
-  private String oldPassword;
+  private String password;
 
   public String getLogin() {
     return login;
@@ -68,16 +64,6 @@ public class User extends AbstractEntity {
 
   public void setLogin(String login) {
     this.login = login;
-  }
-
-  @JsonIgnore
-  public String getPassword() {
-    return password;
-  }
-
-  @JsonProperty
-  public void setPassword(String password) {
-    this.password = password;
   }
 
   public String getFirstName() {
@@ -112,6 +98,14 @@ public class User extends AbstractEntity {
     this.phone = phone;
   }
 
+  public UserType getUserType() {
+    return userType;
+  }
+
+  public void setUserType(UserType userType) {
+    this.userType = userType;
+  }
+
   public Set<Authority> getAuthorities() {
     return authorities;
   }
@@ -120,12 +114,12 @@ public class User extends AbstractEntity {
     this.authorities = authorities;
   }
 
-  public String getOldPassword() {
-    return oldPassword;
+  public String getPassword() {
+    return password;
   }
 
-  public void setOldPassword(String oldPassword) {
-    this.oldPassword = oldPassword;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   @Override
@@ -151,5 +145,10 @@ public class User extends AbstractEntity {
       .append("phone", phone)
       .append("authorities", authorities)
       .toString();
+  }
+
+  private enum UserType {
+    APPLICANT,
+    EMPLOYEE
   }
 }

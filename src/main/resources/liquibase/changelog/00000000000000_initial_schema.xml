@@ -26,6 +26,7 @@
         <constraints unique="true"/>
       </column>
       <column name="phone" type="varchar(15)"/>
+      <column name="user_type" type="varchar(50)"/>
       <column name="created_by" type="varchar(50)">
         <constraints nullable="false"/>
       </column>

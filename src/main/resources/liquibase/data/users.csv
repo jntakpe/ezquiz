@@ -1,3 +1,2 @@
-id;version;login;password;first_name;last_name;email;created_by;phone
-1;0;jntakpe;$2a$10$I7jK3us6BhjLWFmOFOdgKeikb5HUM.mIWOltv4RLNOzKJOJQj2eva;Jocelyn;Ntakpé;jntakpe@gmail.com;system;1234567890
-2;0;system;$2a$10$mE.qmcV0mFU5NcKh73TZx.z4ueI/.bDWbj0T1BYyqP481kGGarKLG;NULL;System;NULL;system;1234567890
+id;version;login;first_name;last_name;email;created_by;phone;user_type
+1;0;jntakpe;Jocelyn;Ntakpé;jntakpe@gmail.com;system;1234567890;EMPLOYEE
