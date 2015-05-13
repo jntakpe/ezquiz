@@ -1,9 +1,9 @@
 'use strict';
 
 import layoutModule from './components/layout/layout';
+import securityModule from './components/security/security';
 import homeModule from './home/home';
 import errorModule from './errors/error';
-import securityModule from './security/security';
 
 angular.module('ezquiz', [
   layoutModule.name,
