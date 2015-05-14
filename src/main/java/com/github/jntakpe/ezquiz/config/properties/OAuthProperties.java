@@ -14,37 +14,37 @@ import javax.validation.constraints.NotNull;
 @ConfigurationProperties("authentication.oauth")
 public class OAuthProperties {
 
-  @NotNull
-  private String clientId;
+    @NotNull
+    private String clientId;
 
-  @NotNull
-  private String secret;
+    @NotNull
+    private String secret;
 
-  @NotNull
-  private Integer tokenValidityInSeconds;
+    @NotNull
+    private Integer tokenValidityInSeconds;
 
-  public String getClientId() {
-    return clientId;
-  }
+    public String getClientId() {
+        return clientId;
+    }
 
-  public void setClientId(String clientId) {
-    this.clientId = clientId;
-  }
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
 
-  public String getSecret() {
-    return secret;
-  }
+    public String getSecret() {
+        return secret;
+    }
 
-  public void setSecret(String secret) {
-    this.secret = secret;
-  }
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
 
-  public Integer getTokenValidityInSeconds() {
-    return tokenValidityInSeconds;
-  }
+    public Integer getTokenValidityInSeconds() {
+        return tokenValidityInSeconds;
+    }
 
-  public void setTokenValidityInSeconds(Integer tokenValidityInSeconds) {
-    this.tokenValidityInSeconds = tokenValidityInSeconds;
-  }
+    public void setTokenValidityInSeconds(Integer tokenValidityInSeconds) {
+        this.tokenValidityInSeconds = tokenValidityInSeconds;
+    }
 
 }

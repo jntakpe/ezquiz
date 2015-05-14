@@ -51,7 +51,7 @@ public class User extends AbstractEntity {
 
   @ManyToMany
   @JoinTable(name = "user_authority", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-    inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
+          inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
   @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
   private Set<Authority> authorities = new HashSet<>();
 
@@ -138,13 +138,13 @@ public class User extends AbstractEntity {
   @Override
   public String toString() {
     return new ToStringBuilder(this)
-      .append("login", login)
-      .append("firstName", firstName)
-      .append("lastName", lastName)
-      .append("email", email)
-      .append("phone", phone)
-      .append("authorities", authorities)
-      .toString();
+            .append("login", login)
+            .append("firstName", firstName)
+            .append("lastName", lastName)
+            .append("email", email)
+            .append("phone", phone)
+            .append("authorities", authorities)
+            .toString();
   }
 
   private enum UserType {

@@ -32,7 +32,7 @@ public final class SecurityUtils {
       return Optional.of(springSecurityUser.getId());
     }
     return Optional.empty();
-  }
+    }
 
   /**
    * Récupère le login de l'utilisateur Spring Security courant
@@ -50,7 +50,7 @@ public final class SecurityUtils {
       }
     }
     return Optional.ofNullable(userName);
-  }
+    }
 
   /**
    * Récupère l'utilisateur courant
@@ -63,7 +63,7 @@ public final class SecurityUtils {
       return Optional.of((UserDetails) authentication.getPrincipal());
     }
     return Optional.empty();
-  }
+    }
 
   /**
    * Vérifie si l'utilisateur est authentifié
@@ -78,9 +78,9 @@ public final class SecurityUtils {
           return false;
         }
       }
-    }
+        }
     return true;
-  }
+    }
 
   private static Authentication getAuthentification() {
     return SecurityContextHolder.getContext().getAuthentication();

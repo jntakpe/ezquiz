@@ -31,12 +31,12 @@ export default class PrincipalService {
       }
     }
     return false;
-  }
+    }
 
   authenticate(identity) {
     this.identity = identity;
     this.authenticated = identity !== null;
-  }
+    }
 
   getIdentity(force) {
     var deferred = this.$q.defer();
@@ -57,6 +57,6 @@ export default class PrincipalService {
       deferred.resolve(this.identity);
     });
     return deferred.promise;
-  }
+    }
 
 }

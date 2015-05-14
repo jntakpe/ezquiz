@@ -26,27 +26,27 @@ import javax.sql.DataSource;
 @EnableJpaRepositories("com.github.jntakpe.ezquiz.repository")
 public class DataSourceConfig {
 
-  public static final String URL = "url";
+    public static final String URL = "url";
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceConfig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceConfig.class);
 
-  @Autowired
-  private DatasourceProperties datasourceProperties;
+    @Autowired
+    private DatasourceProperties datasourceProperties;
 
-  @Autowired
-  private MetricRegistry metricRegistry;
+    @Autowired
+    private MetricRegistry metricRegistry;
 
-  @Bean(destroyMethod = "shutdown")
-  public DataSource dataSource() {
-    LOGGER.debug("Configuring datasource");
-    HikariConfig config = new HikariConfig();
-    config.addDataSourceProperty(URL, datasourceProperties.getUrl());
-    config.setDataSourceClassName(datasourceProperties.getDataSourceClassName());
-    config.setUsername(datasourceProperties.getUsername());
-    config.setPassword(datasourceProperties.getPassword());
-    config.setMetricRegistry(metricRegistry);
-    return new HikariDataSource(config);
-  }
+    @Bean(destroyMethod = "shutdown")
+    public DataSource dataSource() {
+        LOGGER.debug("Configuring datasource");
+        HikariConfig config = new HikariConfig();
+        config.addDataSourceProperty(URL, datasourceProperties.getUrl());
+        config.setDataSourceClassName(datasourceProperties.getDataSourceClassName());
+        config.setUsername(datasourceProperties.getUsername());
+        config.setPassword(datasourceProperties.getPassword());
+        config.setMetricRegistry(metricRegistry);
+        return new HikariDataSource(config);
+    }
 
 }
 

@@ -19,14 +19,14 @@ import java.io.IOException;
 @Component
 public class Http401UnauthorizedEntryPoint implements AuthenticationEntryPoint {
 
-  private final Logger LOGGER = LoggerFactory.getLogger(Http401UnauthorizedEntryPoint.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(Http401UnauthorizedEntryPoint.class);
 
-  /**
-   * Renvoi un code HTTP 401 au client
-   */
-  public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException ex)
-    throws IOException, ServletException {
-    LOGGER.debug("Pre-authenticated entry point called. Rejecting access");
-    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access Denied");
-  }
+    /**
+     * Renvoi un code HTTP 401 au client
+     */
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException ex)
+            throws IOException, ServletException {
+        LOGGER.debug("Pre-authenticated entry point called. Rejecting access");
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access Denied");
+    }
 }

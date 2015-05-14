@@ -7,28 +7,28 @@ import HeaderCtrl from './header/header.controller';
 import {menuLink, menuToggle} from './sidenav/sidenav.directive';
 
 export default angular
-  .module('ezquiz-layout', ['ezquiz-core'])
-  .config($stateProvider => {
-    $stateProvider.state('layout', {
-      templateUrl: 'app/components/layout/layout.html'
-    }).state('main', {
-      parent: 'layout',
-      abstract: true,
-      views: {
-        'sidenav': {
-          templateUrl: 'app/components/layout/sidenav/sidenav.html',
-          controller: SidenavCtrl,
-          controllerAs: 'sidenav'
-        },
-        'header': {
-          templateUrl: 'app/components/layout/header/header.html',
-          controller: HeaderCtrl,
-          controllerAs: 'header'
-        }
-      }
-    });
-  })
-  .filter('humanizeDoc', humanizeDoc)
-  .service('sidenavService', SidenavService)
-  .directive('menuLink', menuLink)
-  .directive('menuToggle', menuToggle);
+    .module('ezquiz-layout', ['ezquiz-core'])
+    .config($stateProvider => {
+        $stateProvider.state('layout', {
+            templateUrl: 'app/components/layout/layout.html'
+        }).state('main', {
+            parent: 'layout',
+            abstract: true,
+            views: {
+                'sidenav': {
+                    templateUrl: 'app/components/layout/sidenav/sidenav.html',
+                    controller: SidenavCtrl,
+                    controllerAs: 'sidenav'
+                },
+                'header': {
+                    templateUrl: 'app/components/layout/header/header.html',
+                    controller: HeaderCtrl,
+                    controllerAs: 'header'
+                }
+            }
+        });
+    })
+    .filter('humanizeDoc', humanizeDoc)
+    .service('sidenavService', SidenavService)
+    .directive('menuLink', menuLink)
+    .directive('menuToggle', menuToggle);

@@ -12,8 +12,8 @@ import java.util.Optional;
  */
 public interface UserRepository extends GenericRepository<User> {
 
-  Optional<User> findByLoginIgnoreCase(String login);
+    Optional<User> findByLoginIgnoreCase(String login);
 
-  Optional<User> findByEmail(String email);
+    Optional<User> findByEmail(String email);
 
 }

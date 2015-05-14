@@ -28,85 +28,85 @@ import javax.sql.DataSource;
 @Configuration
 public class OAuth2ServerConfiguration {
 
-  @Configuration
-  @EnableResourceServer
-  protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+    @Configuration
+    @EnableResourceServer
+    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
-    @Autowired
-    private Http401UnauthorizedEntryPoint authenticationEntryPoint;
+        @Autowired
+        private Http401UnauthorizedEntryPoint authenticationEntryPoint;
 
-    @Autowired
-    private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
+        @Autowired
+        private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-      http
-        .exceptionHandling()
-        .authenticationEntryPoint(authenticationEntryPoint)
-        .and()
-        .logout()
-        .logoutUrl("/api/logout")
-        .logoutSuccessHandler(ajaxLogoutSuccessHandler)
-        .and()
-        .csrf()
-        .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/authorize"))
-        .disable()
-        .headers()
-        .frameOptions().disable()
-        .and()
-        .authorizeRequests()
-        .antMatchers("/api/authenticate").permitAll()
-        .antMatchers("/api/register").permitAll()
-        .antMatchers("/api/**").authenticated()
-        .antMatchers("/manage/**").hasAnyAuthority(ConfigConstants.ADMIN)
-        .antMatchers("/api-docs/**").hasAuthority(ConfigConstants.ADMIN);
-    }
-  }
-
-  @Configuration
-  @EnableAuthorizationServer
-  protected static class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
-
-    @Autowired
-    private DataSource dataSource;
-
-    @Autowired
-    private OAuthProperties oAuthProperties;
-
-    @Autowired
-    @Qualifier("authenticationManagerBean")
-    private AuthenticationManager authenticationManager;
-
-    @Bean
-    public TokenStore tokenStore() {
-      return new JdbcTokenStore(dataSource);
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void configure(HttpSecurity http) throws Exception {
+            http
+                    .exceptionHandling()
+                    .authenticationEntryPoint(authenticationEntryPoint)
+                    .and()
+                    .logout()
+                    .logoutUrl("/api/logout")
+                    .logoutSuccessHandler(ajaxLogoutSuccessHandler)
+                    .and()
+                    .csrf()
+                    .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/authorize"))
+                    .disable()
+                    .headers()
+                    .frameOptions().disable()
+                    .and()
+                    .authorizeRequests()
+                    .antMatchers("/api/authenticate").permitAll()
+                    .antMatchers("/api/register").permitAll()
+                    .antMatchers("/api/**").authenticated()
+                    .antMatchers("/manage/**").hasAnyAuthority(ConfigConstants.ADMIN)
+                    .antMatchers("/api-docs/**").hasAuthority(ConfigConstants.ADMIN);
+        }
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-      endpoints.tokenStore(tokenStore()).authenticationManager(authenticationManager);
-    }
+    @Configuration
+    @EnableAuthorizationServer
+    protected static class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-      clients
-        .inMemory()
-        .withClient(oAuthProperties.getClientId())
-        .scopes("read", "write")
-        .authorities(ConfigConstants.ADMIN, ConfigConstants.USER)
-        .authorizedGrantTypes("password", "refresh_token")
-        .secret(oAuthProperties.getSecret())
-        .accessTokenValiditySeconds(oAuthProperties.getTokenValidityInSeconds());
-    }
+        @Autowired
+        private DataSource dataSource;
 
-  }
+        @Autowired
+        private OAuthProperties oAuthProperties;
+
+        @Autowired
+        @Qualifier("authenticationManagerBean")
+        private AuthenticationManager authenticationManager;
+
+        @Bean
+        public TokenStore tokenStore() {
+            return new JdbcTokenStore(dataSource);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+            endpoints.tokenStore(tokenStore()).authenticationManager(authenticationManager);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+            clients
+                    .inMemory()
+                    .withClient(oAuthProperties.getClientId())
+                    .scopes("read", "write")
+                    .authorities(ConfigConstants.ADMIN, ConfigConstants.USER)
+                    .authorizedGrantTypes("password", "refresh_token")
+                    .secret(oAuthProperties.getSecret())
+                    .accessTokenValiditySeconds(oAuthProperties.getTokenValidityInSeconds());
+        }
+
+    }
 }

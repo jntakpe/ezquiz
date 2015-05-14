@@ -22,23 +22,23 @@ import java.io.IOException;
 @Component
 public class AjaxLogoutSuccessHandler extends AbstractAuthenticationTargetUrlRequestHandler implements LogoutSuccessHandler {
 
-  public static final String BEARER = "Bearer ";
+    public static final String BEARER = "Bearer ";
 
-  public static final String AUTHORIZATION = "authorization";
+    public static final String AUTHORIZATION = "authorization";
 
-  @Autowired
-  private TokenStore tokenStore;
+    @Autowired
+    private TokenStore tokenStore;
 
-  @Override
-  public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
-    throws IOException, ServletException {
-    String token = request.getHeader(AUTHORIZATION);
-    if (token != null && token.startsWith(BEARER)) {
-      OAuth2AccessToken accessToken = tokenStore.readAccessToken(StringUtils.substringAfter(token, BEARER));
-      if (accessToken != null) {
-        tokenStore.removeAccessToken(accessToken);
-      }
+    @Override
+    public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
+            throws IOException, ServletException {
+        String token = request.getHeader(AUTHORIZATION);
+        if (token != null && token.startsWith(BEARER)) {
+            OAuth2AccessToken accessToken = tokenStore.readAccessToken(StringUtils.substringAfter(token, BEARER));
+            if (accessToken != null) {
+                tokenStore.removeAccessToken(accessToken);
+            }
+        }
+        response.setStatus(HttpServletResponse.SC_OK);
     }
-    response.setStatus(HttpServletResponse.SC_OK);
-  }
 }

@@ -2,24 +2,24 @@
 
 export default class SidenavService {
 
-  selectSection(section) {
-    this.openedSection = section;
-  }
+    selectSection(section) {
+        this.openedSection = section;
+    }
 
-  toggleSelectSection(section) {
-    this.openedSection = (this.openedSection === section ? null : section);
-  }
+    toggleSelectSection(section) {
+        this.openedSection = (this.openedSection === section ? null : section);
+    }
 
-  isSectionSelected(section) {
-    return this.openedSection === section;
-  }
+    isSectionSelected(section) {
+        return this.openedSection === section;
+    }
 
-  selectPage(section, page) {
-    this.currentSection = section;
-    this.currentPage = page;
-  }
+    selectPage(section, page) {
+        this.currentSection = section;
+        this.currentPage = page;
+    }
 
-  isPageSelected(page) {
-    return this.currentPage === page;
-  }
+    isPageSelected(page) {
+        return this.currentPage === page;
+    }
 }

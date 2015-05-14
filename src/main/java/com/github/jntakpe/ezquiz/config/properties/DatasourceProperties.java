@@ -14,47 +14,47 @@ import javax.validation.constraints.NotNull;
 @ConfigurationProperties(prefix = "datasource")
 public class DatasourceProperties {
 
-  @NotNull
-  private String url;
+    @NotNull
+    private String url;
 
-  @NotNull
-  private String username;
+    @NotNull
+    private String username;
 
-  @NotNull
-  private String password;
+    @NotNull
+    private String password;
 
-  @NotNull
-  private String dataSourceClassName;
+    @NotNull
+    private String dataSourceClassName;
 
-  public String getUrl() {
-    return url;
-  }
+    public String getUrl() {
+        return url;
+    }
 
-  public void setUrl(String url) {
-    this.url = url;
-  }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-  public String getUsername() {
-    return username;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  public String getDataSourceClassName() {
-    return dataSourceClassName;
-  }
+    public String getDataSourceClassName() {
+        return dataSourceClassName;
+    }
 
-  public void setDataSourceClassName(String dataSourceClassName) {
-    this.dataSourceClassName = dataSourceClassName;
-  }
+    public void setDataSourceClassName(String dataSourceClassName) {
+        this.dataSourceClassName = dataSourceClassName;
+    }
 }

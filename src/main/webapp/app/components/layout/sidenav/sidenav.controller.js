@@ -4,35 +4,35 @@ import menuContent from './menu-content';
 
 export default class SidenavCtrl {
 
-  constructor(sidenavService) {
-    this.sidenavService = sidenavService;
-    this.menuContent = menuContent;
-  }
-
-  isSectionSelected(section) {
-    var selected = false, openedSection = this.sidenavService.openedSection;
-    if (openedSection === section) {
-      selected = true;
+    constructor(sidenavService) {
+        this.sidenavService = sidenavService;
+        this.menuContent = menuContent;
     }
-    else if (section.children) {
-      section.children.forEach(function (childSection) {
-        if (childSection === openedSection) {
-          selected = true;
+
+    isSectionSelected(section) {
+        var selected = false, openedSection = this.sidenavService.openedSection;
+        if (openedSection === section) {
+            selected = true;
         }
-      });
+        else if (section.children) {
+            section.children.forEach(function (childSection) {
+                if (childSection === openedSection) {
+                    selected = true;
+                }
+            });
+        }
+        return selected;
     }
-    return selected;
-  }
 
-  isSelected(page) {
-    return this.sidenavService.isPageSelected(page);
-  }
+    isSelected(page) {
+        return this.sidenavService.isPageSelected(page);
+    }
 
-  isOpen(section) {
-    return this.sidenavService.isSectionSelected(section);
-  }
+    isOpen(section) {
+        return this.sidenavService.isSectionSelected(section);
+    }
 
-  toggleOpen(section) {
-    this.sidenavService.toggleSelectSection(section);
-  }
+    toggleOpen(section) {
+        this.sidenavService.toggleSelectSection(section);
+    }
 }
