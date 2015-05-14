@@ -2,45 +2,44 @@
 
 export default class AuthService {
 
-    constructor($rootScope, $state, $q, principalService, accountService, oauth2Service) {
-        this.$rootScope = $rootScope;
-        this.$state = $state;
-        this.$q = $q;
-        this.principalService = principalService;
-        this.accountService = accountService;
-        this.oauth2Service = oauth2Service;
-    }
+  constructor($rootScope, $state, $q, principalService, oauth2Service) {
+    this.$rootScope = $rootScope;
+    this.$state = $state;
+    this.$q = $q;
+    this.principalService = principalService;
+    this.oauth2Service = oauth2Service;
+  }
 
-    login(credentials, callback) {
-        var cb = callback || angular.noop, deferred = this.$q.defer;
-        this.oauth2Service.login(credentials).then(response => {
-            this.principalService.getIdentity(true).then(() => deferred.resolve(response));
-            return cb();
-        }).catch(err => {
-            this.logout();
-            deferred.reject(err);
-            return cb(err);
-        });
-        return deferred.promise;
-    }
+  login(credentials, callback) {
+    var cb = callback || angular.noop, deferred = this.$q.defer();
+    this.oauth2Service.login(credentials).then(response => {
+      this.principalService.getIdentity(true).then(() => deferred.resolve(response));
+      return cb();
+    }).catch(err => {
+      this.logout();
+      deferred.reject(err);
+      return cb(err);
+    });
+    return deferred.promise;
+  }
 
-    logout() {
-        this.oauth2Service.logout();
-        this.principalService.authenticate(null);
-    }
+  logout() {
+    this.oauth2Service.logout();
+    this.principalService.authenticate(null);
+  }
 
-    authorize(force) {
-        return this.principalService.getIdentity(force).then(() => {
-            var data = this.$rootScope.toState.data;
-            if (data && data.roles && data.roles.length > 0 && !this.principalService.isInAnyRole(data.roles)) {
-                if (this.principalService.isAuthenticated()) {
-                    this.$state.go('accessdenied');
-                } else {
-                    this.$rootScope.returnToState = this.$rootScope.toState;
-                    this.$rootScope.returnToStateParams = this.$rootScope.toStateParams;
-                    this.$state.go('login');
-                }
-            }
-        });
-    }
+  authorize(force) {
+    return this.principalService.getIdentity(force).then(() => {
+      var data = this.$rootScope.toState.data;
+      if (data && data.roles && data.roles.length > 0 && !this.principalService.isInAnyRole(data.roles)) {
+        if (this.principalService.isAuthenticated()) {
+          this.$state.go('accessdenied');
+        } else {
+          this.$rootScope.returnToState = this.$rootScope.toState;
+          this.$rootScope.returnToStateParams = this.$rootScope.toStateParams;
+          this.$state.go('login');
+        }
+      }
+    });
+  }
 }

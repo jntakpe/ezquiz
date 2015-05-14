@@ -17,7 +17,7 @@ export default class SigninCtrl {
         }).then(() => {
             this.error = false;
             if (this.$rootScope.previousStateName === 'register') {
-                this.$state.go('home');
+                this.$state.go('main.home');
             } else {
                 this.$rootScope.back();
             }

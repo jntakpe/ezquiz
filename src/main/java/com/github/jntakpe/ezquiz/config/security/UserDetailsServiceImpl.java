@@ -32,7 +32,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
   private static SpringSecurityUser mapUserDetails(User user) {
     List<GrantedAuthority> auths = mapAuthorities(user);
-    return new SpringSecurityUser(user.getId(), user.getLogin(), user.getPassword(), auths);
+    //FIXME change pass
+    return new SpringSecurityUser(user.getId(), user.getLogin(), "test", auths);
   }
 
   private static List<GrantedAuthority> mapAuthorities(User user) {

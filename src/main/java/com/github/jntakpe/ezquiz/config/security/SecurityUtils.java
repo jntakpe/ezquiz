@@ -53,6 +53,19 @@ public final class SecurityUtils {
   }
 
   /**
+   * Récupère l'utilisateur courant
+   *
+   * @return l'utilisateur courant
+   */
+  public static Optional<UserDetails> getCurrentUser() {
+    Authentication authentication = getAuthentification();
+    if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+      return Optional.of((UserDetails) authentication.getPrincipal());
+    }
+    return Optional.empty();
+  }
+
+  /**
    * Vérifie si l'utilisateur est authentifié
    *
    * @return {@code true} si l'utilisateur est authentifié sinon {@code false}

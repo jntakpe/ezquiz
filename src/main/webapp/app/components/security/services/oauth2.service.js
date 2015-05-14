@@ -9,20 +9,24 @@ export default class OAuth2Service {
 
     login(credentials) {
         var data = 'username=' + credentials.username + '&password=' + credentials.password +
-            '&grant_type=password&scope=read%20write&' + 'client_secret=mySecretOAuthSecret&client_id=qpqapp';
+            '&grant_type=password&scope=read%20write&';
         return this.$http.post('oauth/token', data, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Accept': 'application/json',
-                'Authorization': 'Basic ' + window.btoa('qpqapp' + ':' + 'mySecretOAuthSecret')
+                'Authorization': 'Basic ' + window.btoa('ezquiz' + ':' + 'ezquizsupersecret')
             }
+        }).success((response) => {
+            var expiredAt = new Date();
+            expiredAt.setSeconds(expiredAt.getSeconds() + response.expires_in);
+            response.expires_at = expiredAt.getTime();
+            this.localStorageService.set('token', response);
+            return response;
         });
     }
 
     logout() {
-        this.$http.post('api/logout').then(function () {
-            this.localStorageService.clearAll();
-        });
+        this.$http.post('api/logout').then(() => this.localStorageService.clearAll());
     }
 
     getToken() {
