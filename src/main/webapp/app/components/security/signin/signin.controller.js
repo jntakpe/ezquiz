@@ -8,6 +8,7 @@ export default class SigninCtrl {
         this.$state = $state;
         this.error = false;
         this.user = {};
+        authService.logout();
     }
 
     login() {

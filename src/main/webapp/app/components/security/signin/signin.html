@@ -12,11 +12,11 @@
       <form role="form">
         <md-input-container>
           <md-icon md-svg-src="assets/images/icons/ic_person_24px.svg"></md-icon>
-          <input ng-model="signin.user.username" placeholder="Login" type="text">
+          <input id="username" name="username" ng-model="signin.user.username" placeholder="Login" type="text">
         </md-input-container>
         <md-input-container>
           <md-icon md-svg-src="assets/images/icons/ic_lock_24px.svg"></md-icon>
-          <input id="password" ng-model="signin.user.password" placeholder="Password" type="password">
+          <input id="password" name="password" ng-model="signin.user.password" placeholder="Password" type="password">
         </md-input-container>
         <md-button id="signin-btn" class="md-primary md-raised" ng-click="signin.login()" layout-fill>Connexion
         </md-button>
