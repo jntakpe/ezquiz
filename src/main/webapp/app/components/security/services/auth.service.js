@@ -33,7 +33,7 @@ export default class AuthService {
             var data = this.$rootScope.toState.data;
             if (data && data.roles && data.roles.length > 0 && !this.principalService.isInAnyRole(data.roles)) {
                 if (this.principalService.isAuthenticated()) {
-                    this.$state.go('accessdenied');
+                    this.$state.go('main.home');
                 } else {
                     this.$rootScope.returnToState = this.$rootScope.toState;
                     this.$rootScope.returnToStateParams = this.$rootScope.toStateParams;

@@ -1,10 +1,9 @@
 'use strict';
 
-import coreModule from '../components/core/core';
 import HomeCtrl from './home.controller';
 
 export default angular
-    .module('ezquiz-home', [coreModule.name])
+    .module('ezquiz-home', ['ezquiz-core'])
     .config($stateProvider => {
         $stateProvider.state('main.home', {
             url: '/',

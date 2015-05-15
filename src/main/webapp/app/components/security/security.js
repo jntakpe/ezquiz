@@ -23,13 +23,10 @@ export default angular
         $httpProvider.interceptors.push('authExpiredInterceptor');
         localStorageServiceProvider.setPrefix('ezquiz');
     })
-    .run(($rootScope, $location, $window, $http, $state, principalService, authService) => {
+    .run(($rootScope, $location, $window, $http, $state) => {
         $rootScope.$on('$stateChangeStart', (event, toState, toStateParams) => {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
-            if (principalService.isIdentityResolved()) {
-                authService.authorize();
-            }
         });
         $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
             $rootScope.previousStateName = fromState.name;

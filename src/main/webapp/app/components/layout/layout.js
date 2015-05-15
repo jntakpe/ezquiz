@@ -7,7 +7,7 @@ import HeaderCtrl from './header/header.controller';
 import {menuLink, menuToggle} from './sidenav/sidenav.directive';
 
 export default angular
-    .module('ezquiz-layout', ['ezquiz-core'])
+    .module('ezquiz-layout', ['ezquiz-core', 'ezquiz-security'])
     .config($stateProvider => {
         $stateProvider.state('layout', {
             templateUrl: 'app/components/layout/layout.html'
@@ -24,6 +24,11 @@ export default angular
                     templateUrl: 'app/components/layout/header/header.html',
                     controller: HeaderCtrl,
                     controllerAs: 'header'
+                }
+            },
+            resolve: {
+                authorize: (authService) => {
+                    return authService.authorize();
                 }
             }
         });
