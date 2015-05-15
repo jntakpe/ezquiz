@@ -2,12 +2,13 @@
 
 export default class SigninCtrl {
 
-    constructor($rootScope, $state, authService) {
-        this.authService = authService;
+    constructor($rootScope, $state, $mdToast, authService) {
         this.$rootScope = $rootScope;
         this.$state = $state;
-        this.error = false;
+        this.$mdToast = $mdToast;
+        this.authService = authService;
         this.user = {};
+        this.error = false;
         authService.logout();
     }
 
@@ -24,6 +25,7 @@ export default class SigninCtrl {
             }
         }, () => {
             this.user = {};
+            this.$mdToast.show(this.$mdToast.simple().content('Invalid credentials').position('top'));
         });
     }
 }
