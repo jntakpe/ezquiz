@@ -2,7 +2,7 @@
 
 export default class SigninCtrl {
 
-    constructor($rootScope, $state, $mdToast, authService) {
+    constructor($rootScope, $state, $stateParams, $mdToast, authService) {
         this.$rootScope = $rootScope;
         this.$state = $state;
         this.$mdToast = $mdToast;
@@ -10,6 +10,9 @@ export default class SigninCtrl {
         this.user = {};
         this.error = false;
         authService.logout();
+        if ($stateParams.logout) {
+            this.$mdToast.show(this.$mdToast.simple().content('Logged out successfully').position('top'));
+        }
     }
 
     login() {

@@ -10,7 +10,7 @@ export default angular
     .module('ezquiz-security', ['ezquiz-core', 'LocalStorageModule'])
     .config(($stateProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider) => {
         $stateProvider.state('login', {
-            url: '/login',
+            url: '/login?logout',
             views: {
                 '': {
                     templateUrl: 'app/components/security/signin/signin.html',
