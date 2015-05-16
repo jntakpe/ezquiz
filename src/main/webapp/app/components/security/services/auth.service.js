@@ -13,7 +13,7 @@ export default class AuthService {
     login(credentials, callback) {
         var cb = callback || angular.noop, deferred = this.$q.defer();
         this.oauth2Service.login(credentials).then(response => {
-            this.principalService.getIdentity(true).then(() => deferred.resolve(response));
+            this.principalService.resolveIdentity(true).then(() => deferred.resolve(response));
             return cb();
         }).catch(err => {
             this.logout();
@@ -29,7 +29,7 @@ export default class AuthService {
     }
 
     authorize(force) {
-        return this.principalService.getIdentity(force).then(() => {
+        return this.principalService.resolveIdentity(force).then(identity => {
             var data = this.$rootScope.toState.data;
             if (data && data.roles && data.roles.length > 0 && !this.principalService.isInAnyRole(data.roles)) {
                 if (this.principalService.isAuthenticated()) {
@@ -40,6 +40,7 @@ export default class AuthService {
                     this.$state.go('login');
                 }
             }
+            return identity;
         });
     }
 }

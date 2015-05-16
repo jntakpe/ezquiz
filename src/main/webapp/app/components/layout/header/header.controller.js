@@ -2,13 +2,15 @@
 
 export default class HeaderCtrl {
 
-    constructor($timeout, $mdSidenav) {
-        this.text = 'header text';
+    constructor($timeout, $mdSidenav, authService, authorize) {
         this.$timeout = $timeout;
         this.$mdSidenav = $mdSidenav;
+        this.authService = authService;
+        this.username = authorize.login;
     }
 
     openMenu() {
         this.$timeout(() => this.$mdSidenav('menu-left').open());
     }
+
 }

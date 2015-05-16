@@ -3,8 +3,17 @@
         <md-button class="md-icon-button" aria-label="Toggle Menu" ng-click="header.openMenu()" hide-gt-sm>
             <md-icon md-svg-src="assets/images/icons/ic_menu_24px.svg" class="s24"></md-icon>
         </md-button>
-        <div layout="row" class="fill-height" flex>
-            <h3>{{header.text}}</h3>
+        <div class="fill-height" flex>
+            <h2 class="md-toolbar-item md-breadcrumb" flex>Breadcrumb</h2>
+
+            <div class="md-toolbar-item">
+                <span>{{header.username}}</span>
+            </div>
+            <div class="md-toolbar-item">
+                <a ui-sref="login" class="md-icon-button md-button" aria-label="Disconnect">
+                    <md-icon md-svg-icon="assets/images/icons/ic_exit_to_app_24px.svg"></md-icon>
+                </a>
+            </div>
         </div>
     </div>
 </md-toolbar>

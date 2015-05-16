@@ -27,7 +27,7 @@ export default angular
                 }
             },
             resolve: {
-                authorize: (authService) => {
+                authorize: authService => {
                     return authService.authorize();
                 }
             }
