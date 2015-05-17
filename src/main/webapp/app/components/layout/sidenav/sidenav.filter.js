@@ -1,6 +1,6 @@
 'use strict';
 
-var humanizeDoc = function () {
+export default function () {
     return function (doc) {
         if (!doc) {
             return;
@@ -12,6 +12,4 @@ var humanizeDoc = function () {
         }
         return doc.label || doc.name;
     };
-};
-
-export {humanizeDoc};
+}

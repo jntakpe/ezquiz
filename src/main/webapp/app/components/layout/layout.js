@@ -2,7 +2,7 @@
 
 import SidenavCtrl from './sidenav/sidenav.controller';
 import SidenavService from './sidenav/sidenav.service';
-import {humanizeDoc} from './sidenav/sidenav.filter';
+import humanizeDoc from './sidenav/sidenav.filter';
 import HeaderCtrl from './header/header.controller';
 import {menuLink, menuToggle} from './sidenav/sidenav.directive';
 

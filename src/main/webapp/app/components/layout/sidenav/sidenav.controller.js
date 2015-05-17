@@ -1,12 +1,10 @@
 'use strict';
 
-import menuContent from './menu-content';
-
 export default class SidenavCtrl {
 
     constructor(sidenavService) {
         this.sidenavService = sidenavService;
-        this.menuContent = menuContent;
+        this.menuContent = sidenavService.getMenuContent('ROLE_ADMIN');
     }
 
     isSectionSelected(section) {

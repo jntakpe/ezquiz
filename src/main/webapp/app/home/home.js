@@ -11,7 +11,7 @@ export default angular
                 roles: ['ROLE_USER', 'ROLE_ADMIN']
             },
             views: {
-                'content': {
+                'content@layout': {
                     templateUrl: 'app/home/home.html',
                     controller: HomeCtrl,
                     controllerAs: 'home'

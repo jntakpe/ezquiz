@@ -1,5 +1,7 @@
 'use strict';
 
+import menuContent from './menu-content';
+
 export default class SidenavService {
 
     selectSection(section) {
@@ -21,5 +23,9 @@ export default class SidenavService {
 
     isPageSelected(page) {
         return this.currentPage === page;
+    }
+
+    getMenuContent(role) {
+        return menuContent(role);
     }
 }
